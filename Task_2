@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+url = "https://raw.githubusercontent.com/hse-ds/iad-intro-ds/master/2022/homeworks/hw03-EDA/german_credit.csv"
+frame = pd.read_csv(url, header=0, delimiter=",")
+
+frame.head(5) #Первые 5 строк таблицы
+frame.tail(5) #последние 5 строк таблицы
+print(frame.shape) #Размер таблицы
+
+#Определяем пропуски в данных
+frame.info()
+
+#Признаки
+#Количественные - duration, amount, age, number_credits, people_liable
+#Качественные - personal_status_sex, status, credit_history, purpose, job, housing, other_debtors, present_residence, other_installment_plans
+#Бинарные - telephone, foreign_worker
+#Порядковые - savings, employment_duration, installment_rate
+
+#Выводим среднюю сумму кредита в различных категориях
+frame_2=frame.groupby('purpose')
+print(frame_2['amount'].mean())
+
+#График функций sin(x) и cos(x)
+t = np.linspace(-np.pi, np.pi, 100)
+y1 = np.sin(t)
+y2 = np.cos(t)
+plt.plot(t, y1, linewidth=2, label= 'sin(x)')
+plt.plot(t, y2, '-.', linewidth=2, label= 'cos(x)')
+plt.ylabel("значение функции")
+plt.xlabel("x")
+plt.grid(True)
+plt.legend()
+plt.show() # display
