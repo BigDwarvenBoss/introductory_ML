@@ -1,0 +1,13 @@
+import numpy as np
+
+#Сама функция
+def result_mark(weights: np.array, marks: np.array) -> int:
+    result = np.prod(np.hstack([np.transpose(weights),np.transpose(marks)]), axis=0)
+    mark = int(round(np.sum(result), 0))
+    return mark
+
+#Пример кода
+weights = np.array([0.3, 0.4, 0.2, 0.1])
+marks = np.array([7, 10, 8, 6])
+final_mark = result_mark(weights, marks)
+print(final_mark)
